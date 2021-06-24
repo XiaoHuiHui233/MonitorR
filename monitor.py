@@ -355,7 +355,7 @@ def load_config() -> None:
 def split_log() -> None:
     global record_fp
     if os.path.exists(log_file):
-        time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        time = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
         os.rename(log_file, f'./records/{time}.json')
     if not os.path.exists(config_folder):
         os.makedirs(config_folder)
