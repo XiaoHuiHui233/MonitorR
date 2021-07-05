@@ -7,6 +7,7 @@ import logging
 import math
 import time
 from typing import List, Any, Tuple, Union
+import copy
 
 # ujson比json快 所以我就是要用ujson
 try:
@@ -21,7 +22,7 @@ from mcdreforged.info import Info
 
 PLUGIN_METADATA = {
     'id': 'monitor_reforged',
-    'version': '1.0.3',
+    'version': '1.0.4',
     'name': 'MonitorR',
     'description': 'Adapted from Monitor, a more complete monitoring plug-in.',
     'author': 'XiaoHuiHui',
@@ -744,7 +745,10 @@ def monitor(server: ServerInterface) -> None:
         if not running:
             break
         remain_time = 0.0
-        for player in players:
+        clone_players = copy.deepcopy(players)
+        for player in clone_players:
+            if player not in players:
+                continue
             try:
                 pos = data_api.get_player_coordinate(player)
                 x = int(pos[0])
