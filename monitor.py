@@ -21,7 +21,7 @@ from mcdreforged.info import Info
 
 PLUGIN_METADATA = {
     'id': 'monitor_reforged',
-    'version': '1.0.0',
+    'version': '1.0.3',
     'name': 'MonitorR',
     'description': 'Adapted from Monitor, a more complete monitoring plug-in.',
     'author': 'XiaoHuiHui',
@@ -726,7 +726,7 @@ def check_pos(server: ServerInterface, player: str, x: int, y: int, z: int, dim:
             ))
             record_fp.write(ujson.dumps({
                 'type': 'warning',
-                'timestamp': time.time(),
+                'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'player': str(player),
                 'danger_zone': name
             }) + '\n')
@@ -754,7 +754,7 @@ def monitor(server: ServerInterface) -> None:
                 dim = DIMENSIONS[str(dim)]
                 record_fp.write(ujson.dumps({
                     'type': 'timer',
-                    'timestamp': time.time(),
+                    'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     'player': str(player),
                     'x': x,
                     'y': y,
