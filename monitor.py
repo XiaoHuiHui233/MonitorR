@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- codeing:utf-8 -*-
-
 from datetime import datetime
 import os
 import logging
@@ -15,14 +12,14 @@ try:
 except ImportError:
     import json as ujson
 
-from mcdreforged.minecraft.rtext import RAction, RTextList, RText
+from mcdreforged.api.rtext import RAction, RTextList, RText
 from mcdreforged.api.decorator import new_thread
 from mcdreforged.plugin.server_interface import ServerInterface
-from mcdreforged.info import Info
+from mcdreforged.api.types import Info
 
 PLUGIN_METADATA = {
     'id': 'monitor_reforged',
-    'version': '1.0.4',
+    'version': '1.0.5',
     'name': 'MonitorR',
     'description': 'Adapted from Monitor, a more complete monitoring plug-in.',
     'author': 'XiaoHuiHui',
@@ -393,7 +390,7 @@ def load_sites() -> None:
 
 def on_help(server: ServerInterface, info: Info) -> None:
     for rtext in HELP_MSG:
-        server.reply(info, rtext)  
+        server.reply(info, rtext)
 
 
 def permission_check(server: ServerInterface, info: Info, subcmd: str) -> bool:
@@ -843,4 +840,3 @@ def on_server_stop(server: ServerInterface, return_code: int) -> None:
     global bots, players
     bots = set()
     players = set()
-
